@@ -1,7 +1,6 @@
 // This is the boilerplate code given for you
 // You can modify this code
 // Product data
-// Product data
 const products = [
   { id: 1, name: "Product 1", price: 10 },
   { id: 2, name: "Product 2", price: 20 },
@@ -45,16 +44,14 @@ function renderCart() {
   });
 }
 
-// Add item to cart
+// Add item to cart (allow duplicates)
 function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
   if (!product) return;
-  let cart = getCart();
-  if (!cart.some((item) => item.id === productId)) {
-    cart.push(product);
-    saveCart(cart);
-    renderCart();
-  }
+  const cart = getCart();
+  cart.push(product); // Add product to cart (allow duplicates)
+  saveCart(cart);
+  renderCart();
 }
 
 // Clear cart
