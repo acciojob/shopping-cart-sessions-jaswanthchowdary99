@@ -37,7 +37,7 @@ function renderProducts() {
 // Render cart list
 function renderCart() {
   const cart = getCart();
-  cartList.innerHTML = ""; // Clear existing cart items
+  cartList.innerHTML = ""; 
   cart.forEach((item) => {
     const li = document.createElement("li");
     li.textContent = `${item.name} - $${item.price}`;
@@ -49,11 +49,14 @@ function renderCart() {
 function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
   if (!product) return;
-  const cart = getCart();
-  cart.push(product);
-  saveCart(cart);
-  renderCart();
+  let cart = getCart();
+  if (!cart.some((item) => item.id === productId)) {
+    cart.push(product);
+    saveCart(cart);
+    renderCart();
+  }
 }
+
 // Clear cart
 function clearCart() {
   sessionStorage.removeItem("cart");
