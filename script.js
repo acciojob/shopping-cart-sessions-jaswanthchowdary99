@@ -44,16 +44,16 @@ function renderCart() {
   });
 }
 
-// Add item to cart (allow duplicates)
+// Add item to cart 
 function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
-  if (!product) return; // If no matching product, do nothing
-  const cart = getCart();
-  cart.push(product); // Add product to cart
-  saveCart(cart); // Save updated cart
-  renderCart(); // Re-render cart
+  if (!product) return; 
+  const cart = getCart(); 
+  cart.push(product); 
+  saveCart(cart); 
+  renderCart(); 
+  console.log("Updated cart in session storage:", cart); 
 }
-
 // Clear cart
 function clearCart() {
   sessionStorage.removeItem("cart"); // Remove cart from session storage
