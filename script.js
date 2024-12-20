@@ -36,7 +36,7 @@ function renderProducts() {
 // Render cart list
 function renderCart() {
   const cart = getCart();
-  cartList.innerHTML = ""; 
+  cartList.innerHTML = ""; // Clear previous cart items
   cart.forEach((item) => {
     const li = document.createElement("li");
     li.textContent = `${item.name} - $${item.price}`;
@@ -47,17 +47,17 @@ function renderCart() {
 // Add item to cart (allow duplicates)
 function addToCart(productId) {
   const product = products.find((p) => p.id === productId);
-  if (!product) return;
+  if (!product) return; // If no matching product, do nothing
   const cart = getCart();
-  cart.push(product); // Add product to cart (allow duplicates)
-  saveCart(cart);
-  renderCart();
+  cart.push(product); // Add product to cart
+  saveCart(cart); // Save updated cart
+  renderCart(); // Re-render cart
 }
 
 // Clear cart
 function clearCart() {
-  sessionStorage.removeItem("cart");
-  renderCart();
+  sessionStorage.removeItem("cart"); // Remove cart from session storage
+  cartList.innerHTML = ""; // Clear cart display directly
 }
 
 // Event listeners
@@ -73,3 +73,4 @@ clearCartBtn.addEventListener("click", clearCart);
 // Initial render
 renderProducts();
 renderCart();
+
